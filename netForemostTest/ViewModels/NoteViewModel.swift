@@ -11,7 +11,8 @@ import CoreData
 
 @MainActor
 final class NoteViewModel: ObservableObject {
-    
+    @Published var notes: [Note] = []
+    var allNotes: [Note] = []
     let container: NSPersistentContainer
     
     init() {
@@ -21,7 +22,7 @@ final class NoteViewModel: ObservableObject {
                 fatalError("Error: \(error.localizedDescription)")
             }
         }
-       // self.getStoredPosts()
+        getStoredNotes()
     }
     
     func createNote(note: NoteModel) throws {
@@ -32,11 +33,18 @@ final class NoteViewModel: ObservableObject {
         newNote.body = note.body
         newNote.date = note.date
         
-       // do {
-            try container.viewContext.save()
-           // self.posts.append(newNote)
-     //   } catch {
-        //    print("Unresolved error \(error.localizedDescription)")
-      //  }
+        try container.viewContext.save()
+    }
+    
+    func getStoredNotes() {
+        let request = NSFetchRequest<Note>(entityName: "Note")
+        
+        do {
+            let savedData = try container.viewContext.fetch(request)
+            self.notes = savedData
+            
+        } catch {
+            print("Error getting data. \(error.localizedDescription)")
+        }
     }
 }

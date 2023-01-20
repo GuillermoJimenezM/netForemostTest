@@ -7,6 +7,9 @@
 */
 
 "note" = "Note";
+"notes" = "Notes";
 "title" = "Title";
 "date" = "Date";
 "save" = "Save";
+"orderByTitle" = "Order by title";
+"orderByDate" = "Order by date";
