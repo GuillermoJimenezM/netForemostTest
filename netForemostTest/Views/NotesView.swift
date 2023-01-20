@@ -15,6 +15,7 @@ private enum Destinations: Hashable {
 struct NotesView: View {
     @StateObject var noteViewModel = NoteViewModel()
     @State private var selection: Destinations?
+    @State private var showFilters = false
     
     var body: some View {
         
@@ -24,8 +25,12 @@ struct NotesView: View {
                     NoteDetailView(note: $note)
                         .padding()
                 }
-                
             }
+        }
+        .sheet(isPresented: $showFilters) {
+            NotesFilterView(noteViewModel: noteViewModel)
+                .padding(.horizontal)
+                .presentationDetents([.height(200)])
         }
         .navigationTitle("notes")
         .toolbar {
@@ -38,6 +43,8 @@ struct NotesView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: {
+                    print(showFilters)
+                    showFilters = true
                 }) {
                     Image(systemName: "line.3.horizontal.decrease.circle")
                   }
@@ -47,6 +54,7 @@ struct NotesView: View {
         .navigationDestination(for: Destinations.self) { i in
             NoteView(noteViewModel: noteViewModel)
         }
+       
         
     }
 }

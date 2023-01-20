@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2721D9C6297B3E3A001DD2CA /* NotesFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2721D9C5297B3E3A001DD2CA /* NotesFilter.swift */; };
+		2721D9C6297B3E3A001DD2CA /* NotesFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2721D9C5297B3E3A001DD2CA /* NotesFilterView.swift */; };
+		2721D9C8297B48D3001DD2CA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2721D9C7297B48D3001DD2CA /* Constants.swift */; };
 		27B0E527297A275E00EFC8DF /* netForemostTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B0E526297A275E00EFC8DF /* netForemostTestApp.swift */; };
 		27B0E529297A275E00EFC8DF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B0E528297A275E00EFC8DF /* ContentView.swift */; };
 		27B0E52B297A275F00EFC8DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27B0E52A297A275F00EFC8DF /* Assets.xcassets */; };
@@ -23,7 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2721D9C5297B3E3A001DD2CA /* NotesFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesFilter.swift; sourceTree = "<group>"; };
+		2721D9C5297B3E3A001DD2CA /* NotesFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesFilterView.swift; sourceTree = "<group>"; };
+		2721D9C7297B48D3001DD2CA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		27B0E523297A275E00EFC8DF /* netForemostTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = netForemostTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27B0E526297A275E00EFC8DF /* netForemostTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = netForemostTestApp.swift; sourceTree = "<group>"; };
 		27B0E528297A275E00EFC8DF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 		27B0E525297A275E00EFC8DF /* netForemostTest */ = {
 			isa = PBXGroup;
 			children = (
+				2721D9C7297B48D3001DD2CA /* Constants.swift */,
 				27B9C6D3297B116C007C87AC /* Extension */,
 				27B9C6C9297AFF34007C87AC /* Localization */,
 				27B0E53C297A2D2300EFC8DF /* ViewModels */,
@@ -113,7 +116,7 @@
 				27B0E53F297A2FC300EFC8DF /* NoteView.swift */,
 				27B9C6CF297B0DB4007C87AC /* NotesView.swift */,
 				27B9C6D1297B0F1E007C87AC /* NoteDetailView.swift */,
-				2721D9C5297B3E3A001DD2CA /* NotesFilter.swift */,
+				2721D9C5297B3E3A001DD2CA /* NotesFilterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -214,7 +217,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				27B9C6D0297B0DB4007C87AC /* NotesView.swift in Sources */,
-				2721D9C6297B3E3A001DD2CA /* NotesFilter.swift in Sources */,
+				2721D9C8297B48D3001DD2CA /* Constants.swift in Sources */,
+				2721D9C6297B3E3A001DD2CA /* NotesFilterView.swift in Sources */,
 				27B0E529297A275E00EFC8DF /* ContentView.swift in Sources */,
 				27B0E540297A2FC300EFC8DF /* NoteView.swift in Sources */,
 				27B9C6D2297B0F1E007C87AC /* NoteDetailView.swift in Sources */,

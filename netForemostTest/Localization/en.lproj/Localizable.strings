@@ -13,3 +13,5 @@
 "save" = "Save";
 "orderByTitle" = "Order by title";
 "orderByDate" = "Order by date";
+"cancel" = "Cancel";
+"ok" = "Ok";

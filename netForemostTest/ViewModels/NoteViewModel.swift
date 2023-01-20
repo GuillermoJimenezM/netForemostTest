@@ -9,6 +9,12 @@ import Foundation
 import SwiftUI
 import CoreData
 
+enum Filter {
+    case title
+    case date
+}
+
+
 @MainActor
 final class NoteViewModel: ObservableObject {
     @Published var notes: [Note] = []
@@ -38,13 +44,26 @@ final class NoteViewModel: ObservableObject {
     
     func getStoredNotes() {
         let request = NSFetchRequest<Note>(entityName: "Note")
+      //  request.predicate = NSPredicate(format: "title =%@", "A note")
         
         do {
             let savedData = try container.viewContext.fetch(request)
-            self.notes = savedData
+            allNotes = savedData
+            filterNotes(filter: .title)
             
         } catch {
             print("Error getting data. \(error.localizedDescription)")
         }
+    }
+    
+    func filterNotes(filter: Filter) {
+        
+        switch filter {
+        case .title:
+            notes = allNotes.sorted(by: {$0.title ?? "" < $1.title ?? ""})
+        case .date:
+            notes = allNotes.sorted(by: {$0.date ?? Date() < $1.date ?? Date()})
+        }
+        
     }
 }

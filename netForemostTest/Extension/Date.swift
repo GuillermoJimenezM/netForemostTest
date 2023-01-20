@@ -11,7 +11,7 @@ extension Date {
     
     func toLocalShortDate() -> String {
         let formater = DateFormatter()
-        formater.dateFormat = "MMM d, yyyy"
+        formater.dateFormat = K.SHORT_DATE_FORMAT
 
         return formater.string(from: self)
     }

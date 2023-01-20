@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct NoteDetailView: View {
-    let colors: [Color] = [.yellow, .green, .mint, .teal, .gray.opacity(0.2)]
+   
     @Binding var note: Note
+    @State private var color = K.COLORS.randomElement()
     
     var body: some View {
         HStack {
@@ -21,10 +22,9 @@ struct NoteDetailView: View {
             if let date = note.date {
                 Text(date.toLocalShortDate())
             }
-            
         }
         .padding(10)
-        .background(colors.randomElement())
+        .background(color)
         .cornerRadius(25)
     }
     
