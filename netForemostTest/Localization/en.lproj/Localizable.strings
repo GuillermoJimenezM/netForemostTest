@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  netForemostTest
+
+  Created by Guillermo Jimenez on 20/1/23.
+  
+*/
+
+"note" = "Note";
+"title" = "Title";
+"date" = "Date";
+"save" = "Save";
