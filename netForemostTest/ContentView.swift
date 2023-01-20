@@ -13,6 +13,7 @@ private enum Destinations: Hashable {
 }
 
 struct ContentView: View {
+    @StateObject var noteViewModel = NoteViewModel()
     @State private var selection: Destinations?
     
     var body: some View {
@@ -25,25 +26,13 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(value: Destinations.new) {
-                       // Button(action: {
-                           // selection = .new
-                       // }) {
-                            Image(systemName: "plus.circle")
-                      //  }
+                        Image(systemName: "plus.circle")
                     }
                 }
             }
             .navigationDestination(for: Destinations.self) { i in
-                
-               // print(i)
-               // if ( i == .new) {
-                    
-                    NoteView()
-               // }
-                
+                NoteView(noteViewModel: noteViewModel)
             }
-            
-            
         }
     }
 }

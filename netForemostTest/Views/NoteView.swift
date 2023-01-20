@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct NoteView: View {
+    @Environment(\.dismiss) var dismiss
+    
+    @ObservedObject var noteViewModel: NoteViewModel
     
     @State private var titleText = ""
     @State private var bodyText = ""
@@ -34,6 +37,16 @@ struct NoteView: View {
                 
                 Button {
                     
+                    let newNote = NoteModel(title: titleText, body: bodyText, date: date)
+                    
+                    do {
+                        try noteViewModel.createNote(note: newNote)
+                        print("saved")
+                        dismiss()
+                    }
+                    catch {
+                        print(error)
+                    }
                 } label: {
                     Text("save")
                         .frame(maxWidth: .infinity)
