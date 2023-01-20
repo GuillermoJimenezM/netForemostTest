@@ -14,11 +14,12 @@ enum Filter {
     case date
 }
 
-
 @MainActor
 final class NoteViewModel: ObservableObject {
     @Published var notes: [Note] = []
+    
     var allNotes: [Note] = []
+    var currentFilter: Filter = .title
     let container: NSPersistentContainer
     
     init() {
@@ -40,6 +41,8 @@ final class NoteViewModel: ObservableObject {
         newNote.date = note.date
         
         try container.viewContext.save()
+        allNotes.append(newNote)
+        filterNotes(filter: currentFilter)
     }
     
     func getStoredNotes() {
@@ -49,7 +52,7 @@ final class NoteViewModel: ObservableObject {
         do {
             let savedData = try container.viewContext.fetch(request)
             allNotes = savedData
-            filterNotes(filter: .title)
+            filterNotes(filter: currentFilter)
             
         } catch {
             print("Error getting data. \(error.localizedDescription)")
@@ -57,6 +60,7 @@ final class NoteViewModel: ObservableObject {
     }
     
     func filterNotes(filter: Filter) {
+        currentFilter = filter
         
         switch filter {
         case .title:
