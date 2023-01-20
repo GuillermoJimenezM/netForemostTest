@@ -11,6 +11,11 @@
 		27B0E529297A275E00EFC8DF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B0E528297A275E00EFC8DF /* ContentView.swift */; };
 		27B0E52B297A275F00EFC8DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27B0E52A297A275F00EFC8DF /* Assets.xcassets */; };
 		27B0E52E297A275F00EFC8DF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27B0E52D297A275F00EFC8DF /* Preview Assets.xcassets */; };
+		27B0E537297A28E400EFC8DF /* Notes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 27B0E535297A28E400EFC8DF /* Notes.xcdatamodeld */; };
+		27B0E53A297A2A7F00EFC8DF /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B0E539297A2A7F00EFC8DF /* NoteModel.swift */; };
+		27B0E540297A2FC300EFC8DF /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B0E53F297A2FC300EFC8DF /* NoteView.swift */; };
+		27B0E542297A336100EFC8DF /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B0E541297A336100EFC8DF /* NoteViewModel.swift */; };
+		27B9C6CC297AFF7A007C87AC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27B9C6CE297AFF7A007C87AC /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +24,11 @@
 		27B0E528297A275E00EFC8DF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		27B0E52A297A275F00EFC8DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27B0E52D297A275F00EFC8DF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		27B0E536297A28E400EFC8DF /* Notes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Notes.xcdatamodel; sourceTree = "<group>"; };
+		27B0E539297A2A7F00EFC8DF /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
+		27B0E53F297A2FC300EFC8DF /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
+		27B0E541297A336100EFC8DF /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
+		27B9C6CD297AFF7A007C87AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +61,11 @@
 		27B0E525297A275E00EFC8DF /* netForemostTest */ = {
 			isa = PBXGroup;
 			children = (
+				27B9C6C9297AFF34007C87AC /* Localization */,
+				27B0E53C297A2D2300EFC8DF /* ViewModels */,
+				27B0E53B297A2D1F00EFC8DF /* Views */,
+				27B0E538297A2A7400EFC8DF /* Models */,
+				27B0E534297A28D300EFC8DF /* CoreDataModels */,
 				27B0E526297A275E00EFC8DF /* netForemostTestApp.swift */,
 				27B0E528297A275E00EFC8DF /* ContentView.swift */,
 				27B0E52A297A275F00EFC8DF /* Assets.xcassets */,
@@ -65,6 +80,46 @@
 				27B0E52D297A275F00EFC8DF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		27B0E534297A28D300EFC8DF /* CoreDataModels */ = {
+			isa = PBXGroup;
+			children = (
+				27B0E535297A28E400EFC8DF /* Notes.xcdatamodeld */,
+			);
+			path = CoreDataModels;
+			sourceTree = "<group>";
+		};
+		27B0E538297A2A7400EFC8DF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				27B0E539297A2A7F00EFC8DF /* NoteModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		27B0E53B297A2D1F00EFC8DF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				27B0E53F297A2FC300EFC8DF /* NoteView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		27B0E53C297A2D2300EFC8DF /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				27B0E541297A336100EFC8DF /* NoteViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		27B9C6C9297AFF34007C87AC /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				27B9C6CE297AFF7A007C87AC /* Localizable.strings */,
+			);
+			path = Localization;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +182,7 @@
 			files = (
 				27B0E52E297A275F00EFC8DF /* Preview Assets.xcassets in Resources */,
 				27B0E52B297A275F00EFC8DF /* Assets.xcassets in Resources */,
+				27B9C6CC297AFF7A007C87AC /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,11 +194,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				27B0E529297A275E00EFC8DF /* ContentView.swift in Sources */,
+				27B0E540297A2FC300EFC8DF /* NoteView.swift in Sources */,
+				27B0E542297A336100EFC8DF /* NoteViewModel.swift in Sources */,
+				27B0E537297A28E400EFC8DF /* Notes.xcdatamodeld in Sources */,
 				27B0E527297A275E00EFC8DF /* netForemostTestApp.swift in Sources */,
+				27B0E53A297A2A7F00EFC8DF /* NoteModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		27B9C6CE297AFF7A007C87AC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				27B9C6CD297AFF7A007C87AC /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		27B0E52F297A275F00EFC8DF /* Debug */ = {
@@ -339,6 +410,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		27B0E535297A28E400EFC8DF /* Notes.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				27B0E536297A28E400EFC8DF /* Notes.xcdatamodel */,
+			);
+			currentVersion = 27B0E536297A28E400EFC8DF /* Notes.xcdatamodel */;
+			path = Notes.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 27B0E51B297A275E00EFC8DF /* Project object */;
 }

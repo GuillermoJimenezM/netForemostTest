@@ -7,20 +7,32 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
+private enum Destinations: Hashable {
+    case new
+    case edit(UUID)
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+struct ContentView: View {
+    @StateObject var noteViewModel = NoteViewModel()
+    @State private var selection: Destinations?
+    
+    var body: some View {
+        NavigationStack {
+            
+            List {
+                Text("HELLO1")
+            }
+            
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(value: Destinations.new) {
+                        Image(systemName: "plus.circle")
+                    }
+                }
+            }
+            .navigationDestination(for: Destinations.self) { i in
+                NoteView(noteViewModel: noteViewModel)
+            }
+        }
     }
 }
