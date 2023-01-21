@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-private enum Destinations: Hashable {
+fileprivate enum Destinations: Hashable {
     case new
-    case edit(UUID)
+    case edit(Note)
 }
 
 struct NotesView: View {
@@ -22,8 +22,11 @@ struct NotesView: View {
         ScrollView {
             LazyVStack {
                 ForEach($noteViewModel.notes) { $note in
-                    NoteDetailView(note: $note)
-                        .padding()
+                    NavigationLink(value: Destinations.edit(note)) {
+                        NoteDetailView(note: $note)
+                            .padding()
+                    }
+                    .buttonStyle(.plain)
                 }
             }
         }
@@ -43,18 +46,19 @@ struct NotesView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: {
-                    print(showFilters)
                     showFilters = true
                 }) {
                     Image(systemName: "line.3.horizontal.decrease.circle")
                   }
-                
             }
         }
         .navigationDestination(for: Destinations.self) { i in
-            NoteView(noteViewModel: noteViewModel)
+            switch i {
+            case .new:
+                NoteView(noteViewModel: noteViewModel)
+            case .edit(let note):
+                NoteView(noteViewModel: noteViewModel, note: note)
+            }
         }
-       
-        
     }
 }

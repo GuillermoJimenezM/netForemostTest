@@ -32,19 +32,6 @@ final class NoteViewModel: ObservableObject {
         getStoredNotes()
     }
     
-    func createNote(note: NoteModel) throws {
-        
-        let newNote = Note(context: container.viewContext)
-        newNote.id = note.id
-        newNote.title = note.title
-        newNote.body = note.body
-        newNote.date = note.date
-        
-        try container.viewContext.save()
-        allNotes.append(newNote)
-        filterNotes(filter: currentFilter)
-    }
-    
     func getStoredNotes() {
         let request = NSFetchRequest<Note>(entityName: "Note")
       //  request.predicate = NSPredicate(format: "title =%@", "A note")
@@ -59,6 +46,28 @@ final class NoteViewModel: ObservableObject {
         }
     }
     
+    func createNote(note: NoteModel) throws {
+        
+        let newNote = Note(context: container.viewContext)
+        newNote.id = note.id
+        newNote.title = note.title
+        newNote.body = note.body
+        newNote.date = note.date
+        
+        try container.viewContext.save()
+        allNotes.append(newNote)
+        filterNotes(filter: currentFilter)
+    }
+    
+    func updateNote(note: Note) throws {
+        do {
+            try container.viewContext.save()
+            filterNotes(filter: currentFilter)
+        } catch {
+            print("Error saving the note. \(error.localizedDescription)")
+        }
+    }
+        
     func filterNotes(filter: Filter) {
         currentFilter = filter
         
