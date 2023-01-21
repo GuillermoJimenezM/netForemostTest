@@ -23,7 +23,7 @@ final class NoteViewModel: ObservableObject {
     let container: NSPersistentContainer
     
     init() {
-        container = NSPersistentContainer(name: "Notes") //exactname of the CoreData file
+        container = NSPersistentContainer(name: "Notes")
         container.loadPersistentStores { (description, error) in
             if let error = error {
                 fatalError("Error: \(error.localizedDescription)")
@@ -77,6 +77,9 @@ final class NoteViewModel: ObservableObject {
         case .date:
             notes = allNotes.sorted(by: {$0.date ?? Date() < $1.date ?? Date()})
         }
-        
+    }
+    
+    func searchTerm(text: String) {
+        notes = allNotes.filter({$0.title?.contains(text) ?? false || $0.body?.contains(text) ?? false }) // prevent crashing if found nil
     }
 }
