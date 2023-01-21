@@ -16,6 +16,7 @@ struct NotesView: View {
     @StateObject var noteViewModel = NoteViewModel()
     @State private var selection: Destinations?
     @State private var showFilters = false
+    @State private var searchText = ""
     
     var body: some View {
         
@@ -24,12 +25,16 @@ struct NotesView: View {
                 ForEach($noteViewModel.notes) { $note in
                     NavigationLink(value: Destinations.edit(note)) {
                         NoteDetailView(note: $note)
-                            .padding()
+                            .padding(.horizontal)
                     }
                     .buttonStyle(.plain)
                 }
             }
         }
+        .refreshable {
+            noteViewModel.getStoredNotes()
+        }
+        .searchable(text: $searchText)
         .sheet(isPresented: $showFilters) {
             NotesFilterView(noteViewModel: noteViewModel)
                 .padding(.horizontal)
@@ -42,15 +47,21 @@ struct NotesView: View {
                     Image(systemName: "plus.circle")
                 }
             }
-        }
-        .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: {
                     showFilters = true
                 }) {
                     Image(systemName: "line.3.horizontal.decrease.circle")
-                  }
+                }
             }
+        }
+        .onChange(of: searchText) { newText in
+            if (newText.isEmpty) {
+                noteViewModel.getStoredNotes()
+                return
+            }
+            
+            noteViewModel.searchTerm(text: newText)
         }
         .navigationDestination(for: Destinations.self) { i in
             switch i {

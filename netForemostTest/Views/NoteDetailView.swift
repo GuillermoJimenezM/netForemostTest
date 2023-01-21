@@ -25,7 +25,7 @@ struct NoteDetailView: View {
         }
         .padding(10)
         .background(color)
-        .cornerRadius(25)
+        .cornerRadius(10)
     }
     
   
