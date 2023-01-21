@@ -9,9 +9,17 @@ import Foundation
 import SwiftUI
 import CoreData
 
+enum Filter {
+    case title
+    case date
+}
+
 @MainActor
 final class NoteViewModel: ObservableObject {
+    @Published var notes: [Note] = []
     
+    var allNotes: [Note] = []
+    var currentFilter: Filter = .title
     let container: NSPersistentContainer
     
     init() {
@@ -21,7 +29,21 @@ final class NoteViewModel: ObservableObject {
                 fatalError("Error: \(error.localizedDescription)")
             }
         }
-       // self.getStoredPosts()
+        getStoredNotes()
+    }
+    
+    func getStoredNotes() {
+        let request = NSFetchRequest<Note>(entityName: "Note")
+      //  request.predicate = NSPredicate(format: "title =%@", "A note")
+        
+        do {
+            let savedData = try container.viewContext.fetch(request)
+            allNotes = savedData
+            filterNotes(filter: currentFilter)
+            
+        } catch {
+            print("Error getting data. \(error.localizedDescription)")
+        }
     }
     
     func createNote(note: NoteModel) throws {
@@ -32,11 +54,29 @@ final class NoteViewModel: ObservableObject {
         newNote.body = note.body
         newNote.date = note.date
         
-       // do {
+        try container.viewContext.save()
+        allNotes.append(newNote)
+        filterNotes(filter: currentFilter)
+    }
+    
+    func updateNote(note: Note) throws {
+        do {
             try container.viewContext.save()
-           // self.posts.append(newNote)
-     //   } catch {
-        //    print("Unresolved error \(error.localizedDescription)")
-      //  }
+            filterNotes(filter: currentFilter)
+        } catch {
+            print("Error saving the note. \(error.localizedDescription)")
+        }
+    }
+        
+    func filterNotes(filter: Filter) {
+        currentFilter = filter
+        
+        switch filter {
+        case .title:
+            notes = allNotes.sorted(by: {$0.title ?? "" < $1.title ?? ""})
+        case .date:
+            notes = allNotes.sorted(by: {$0.date ?? Date() < $1.date ?? Date()})
+        }
+        
     }
 }

@@ -11,6 +11,7 @@ struct NoteView: View {
     @Environment(\.dismiss) var dismiss
     
     @ObservedObject var noteViewModel: NoteViewModel
+    var note: Note?
     
     @State private var titleText = ""
     @State private var bodyText = ""
@@ -35,19 +36,7 @@ struct NoteView: View {
                     .scrollContentBackground(.hidden) // <- Hide it
                     .background(RoundedRectangle(cornerRadius: 10).fill(.gray.opacity(0.2)))
                 
-                Button {
-                    
-                    let newNote = NoteModel(title: titleText, body: bodyText, date: date)
-                    
-                    do {
-                        try noteViewModel.createNote(note: newNote)
-                        print("saved")
-                        dismiss()
-                    }
-                    catch {
-                        print(error)
-                    }
-                } label: {
+                Button(action: performSaving) {
                     Text("save")
                         .frame(maxWidth: .infinity)
                 }
@@ -56,6 +45,37 @@ struct NoteView: View {
             .padding(.horizontal, 10)
         }
         .navigationTitle("note")
+        .onAppear {
+            if let note {
+                titleText = note.title ?? ""
+                bodyText = note.body ?? ""
+                date = note.date ?? Date()
+            }
+        }
+    }
+    
+    func performSaving() {
+        if let note {
+            note.title = titleText
+            note.body = bodyText
+            note.date =  date
+            
+            do {
+                try noteViewModel.updateNote(note: note)
+            }
+            catch {}
+            return
+        }
+        
+        let newNote = NoteModel(title: titleText, body: bodyText, date: date)
+        
+        do {
+            try noteViewModel.createNote(note: newNote)
+            dismiss()
+        }
+        catch {
+            print(error)
+        }
     }
 }
 
